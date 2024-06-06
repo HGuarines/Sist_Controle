@@ -1,9 +1,9 @@
 import control as ctrl
 import numpy as np
 
-
+# Definindo função para arredondar se não da merda ss matriz 3x3
 def arredondar(FT):
-    FT.num = [[FT.num[0][0].round()]]
+    FT.num = [[FT.num[0][0].round(3)]]
     return FT
 
 
