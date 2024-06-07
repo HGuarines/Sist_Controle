@@ -1,50 +1,51 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Função para calcular autovalores
-
-
+# Definir a função para calcular os autovalores para um dado K
 def calcular_autovalores(K):
-    # Definir a matriz de estado A com o valor de K variável
-    A = np.array([[0, 1, 0],
-                  [0, 0, 1],
-                  [-2, -K, -2]])
-    # Calcular os autovalores da matriz A
+    A = np.array([
+        [0, 1, 0],
+        [0, 0, 1],
+        [-2, -K, -2]
+    ])
     autovalores = np.linalg.eigvals(A)
     return autovalores
 
+# Intervalo de K
+K_values = np.linspace(0, 100, 1000)
 
-# Gerar intervalo de valores para K
-K_values = np.linspace(-100, 100, 500)
+# Armazenar autovalores
+autovalores_reais = []
+autovalores_imaginarios = []
 
 # Calcular autovalores para cada valor de K
-autovalores = np.array([calcular_autovalores(K) for K in K_values])
+for K in K_values:
+    autovalores = calcular_autovalores(K)
+    autovalores_reais.append(np.real(autovalores))
+    autovalores_imaginarios.append(np.imag(autovalores))
 
-# Plotar os autovalores
-plt.figure(figsize=(10, 6))
-for i in range(3):  # Iterar sobre cada um dos três autovalores
-    plt.plot(K_values, autovalores[:, i].real,
-             label=f'Autovalor {i+1} (parte real)')
-    plt.plot(K_values, autovalores[:, i].imag, linestyle='dashed', label=f'Autovalor {
-             i+1} (parte imaginária)')
+# Converter para numpy arrays para facilitar a manipulação
+autovalores_reais = np.array(autovalores_reais)
+autovalores_imaginarios = np.array(autovalores_imaginarios)
 
-# Adicionar linha horizontal em y=0 para referência
-plt.axhline(0, color='black', linewidth=0.5)
-# Adicionar rótulos aos eixos x e y, título e legenda ao gráfico
+# Plotar autovalores reais
+plt.figure(figsize=(10, 5))
+for i in range(autovalores_reais.shape[1]):
+    plt.plot(K_values, autovalores_reais[:, i], label=f'Autovalor {i+1}')
 plt.xlabel('K')
-plt.ylabel('Autovalores')
-plt.title('Autovalores em função de K')
+plt.ylabel('Parte Real dos Autovalores')
+plt.title('Parte Real dos Autovalores em Função de K')
 plt.legend()
 plt.grid(True)
 plt.show()
 
-# Determinar o intervalo de K para autovalores no semiplano esquerdo
-K_estavel = []
-for K in K_values:
-    autovalores_atual = calcular_autovalores(K)
-    # Verificar se todas as partes reais são negativas
-    if np.all(np.real(autovalores_atual) < 0):
-        K_estavel.append(K)
-
-# Imprimir intervalo de K para estabilidade
-print(f'Intervalo de K para estabilidade: {K_estavel[0]} a {K_estavel[-1]}')
+# Plotar autovalores imaginários
+plt.figure(figsize=(10, 5))
+for i in range(autovalores_imaginarios.shape[1]):
+    plt.plot(K_values, autovalores_imaginarios[:, i], label=f'Autovalor {i+1}')
+plt.xlabel('K')
+plt.ylabel('Parte Imaginária dos Autovalores')
+plt.title('Parte Imaginária dos Autovalores em Função de K')
+plt.legend()
+plt.grid(True)
+plt.show()

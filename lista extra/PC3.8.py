@@ -7,5 +7,7 @@ import numpy as np
 K = np.linspace(0,100,1000)
 
 # Matriz EE
-A = np.array([[0,1,0],[0,0,1],[-2,-K,-2]])
+A = np.array([[0, 1, 0],
+              [0, 0, 1],
+              [-2,-K,-2]])
 
