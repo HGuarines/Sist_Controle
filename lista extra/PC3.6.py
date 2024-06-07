@@ -1,7 +1,7 @@
 """ Resolução da questão PC3.6"""
 
 import control as ctrl
-
+import matplotlib.pyplot as plt
 # Definindo numerador e denominador da FT do controlador
 numc = [3]
 denc = [1,3]
@@ -35,3 +35,24 @@ print(f'A = \n{sist_ssp.A}')
 print(f'B = \n{sist_ssp.B}')
 print(f'C = \n{sist_ssp.C}')
 print(f'D = \n{sist_ssp.D}')
+
+# Multiplicando controlador por processo
+sist_serie = ctrl.series(Gc, Gp)
+
+# Fazendo a realimentação negativa (feedback ja assume negativa)
+sist_realiment = ctrl.feedback(sist_serie)
+
+# Transformando em variaveis de estado
+sist_sstotal = ctrl.tf2ss(sist_realiment)
+
+# calculando o impulso
+t, impulso = ctrl.impulse_response(sist_sstotal)
+
+# (c)
+plt.figure()
+plt.plot(t, impulso)
+plt.xlabel('$Tempo (s)$')
+plt.ylabel('$Amplitude$')
+plt.title('(c) Resposta do sistema em malha fechada ao impulso')
+plt.grid(True)
+plt.show()
