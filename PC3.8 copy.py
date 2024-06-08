@@ -15,7 +15,7 @@ def calcular_autovalores(K):
 
 
 # Gerar intervalo de valores para K
-K_values = np.linspace(-100, 100, 500)
+K_values = np.linspace(0, 100, 500)
 
 # Calcular autovalores para cada valor de K
 autovalores = np.array([calcular_autovalores(K) for K in K_values])
