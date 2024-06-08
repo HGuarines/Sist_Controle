@@ -30,7 +30,7 @@ Gp = ctrl.TransferFunction(nump, denp)
 sist_ssp = ctrl.tf2ss(Gp)
 
 # Resposta (b)
-print('\n(B)\nRepresentação do processo em espaços de estados')
+print('\n(b)\nRepresentação do processo em espaços de estados')
 print(f'A = \n{sist_ssp.A}')
 print(f'B = \n{sist_ssp.B}')
 print(f'C = \n{sist_ssp.C}')
