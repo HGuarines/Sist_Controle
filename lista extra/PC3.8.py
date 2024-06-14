@@ -1,6 +1,6 @@
 """ Resolução da questão PC3.8 """
 
-import control as ctrl
+import control.matlab as ml
 import numpy as np
 
 
