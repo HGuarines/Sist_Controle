@@ -1,6 +1,7 @@
 # Primeiro importa-se as bibliotecas
 # Note que 'as np' e outros seria um tipo de apelido para o comando
 
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import control as ctrl
@@ -27,12 +28,19 @@ impulso_t, impulso_r = ctrl.impulse_response(sistema, T=tempo)
 
 # Plotando a resposta
 
-plt.figure(figsize=(10, 6))
-plt.plot(degrau_t, degrau_r, label='Resposta ao Degrau')
-plt.plot(impulso_t, impulso_r, label='Resposta ao impulso')
-plt.title('Resposta no tempo')
-plt.xlabel('Tempo (s)')
-plt.ylabel('Amplitude')
-plt.legend()
-plt.grid(True)
-plt.show()
+# plt.figure(figsize=(10, 6))
+# plt.plot(degrau_t, degrau_r, label='Resposta ao Degrau')
+# plt.plot(impulso_t, impulso_r, label='Resposta ao impulso')
+# plt.title('Resposta no tempo')
+# plt.xlabel('Tempo (s)')
+# plt.ylabel('Amplitude')
+# plt.legend()
+# plt.grid(True)
+# plt.show()
+
+df = pd.DataFrame()
+
+df.index = tempo
+df['resposta_degrau'] = degrau_r
+df['resposta_impulso'] = impulso_r
+df.plot(grid=True);
