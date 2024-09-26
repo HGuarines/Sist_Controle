@@ -1,28 +1,28 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Define the state-space matrices
-def get_eigenvalues(K):
+# Define os autovalores para a matriz A dada
+def calc_autovalores(K):
     A = np.array([[0, 1, 0],
                   [0, 0, 1],
                   [-2, -K, -2]])
-    eigenvalues, _ = np.linalg.eig(A)
-    return eigenvalues
+    autovalores, _ = np.linalg.eig(A)
+    return autovalores
 
-# Range of K values
+# Range dos valores de K
 K_values = np.linspace(0, 100, 500)
 
-# Plot setup
+# Plot do gráfico
 plt.figure(figsize=(10, 6))
 
-# Compute and plot poles for each K
+# Computando e plotando os polos para cada valor de K
 for K in K_values:
-    eigenvalues = get_eigenvalues(K)
-    plt.plot(np.real(eigenvalues), np.imag(eigenvalues), 'bx')
+    autovalores = calc_autovalores(K)
+    plt.plot(np.real(autovalores), np.imag(autovalores), 'bx')
 
-plt.axvline(0, color='r', linestyle='--')  # Indicate the imaginary axis
-plt.xlabel('Real Part')
-plt.ylabel('Imaginary Part')
-plt.title('Pole-Zero Map for varying K (0 <= K <= 100)')
+plt.axvline(0, color='r', linestyle='--')  # Indicando o eixo imaginario
+plt.xlabel('Parte Real')
+plt.ylabel('Parte Imaginária')
+plt.title('Mapa dos Polos e Zeros para K (0 <= K <= 100)')
 plt.grid(True)
 plt.show()
