@@ -10,13 +10,13 @@ def calc_autovalores(K):
     return autovalores
 
 # Range dos valores de K
-K_values = np.linspace(0, 100, 500)
+valores_K = np.linspace(0, 100, 500)
 
 # Plot do gráfico
 plt.figure(figsize=(10, 6))
 
 # Computando e plotando os polos para cada valor de K
-for K in K_values:
+for K in valores_K:
     autovalores = calc_autovalores(K)
     plt.plot(np.real(autovalores), np.imag(autovalores), 'bx')
 
